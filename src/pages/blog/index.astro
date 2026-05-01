@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+type BlogPost = {
+  frontmatter: {
+    title: string;
+    description: string;
+    pubDate: string | Date;
+    tags?: string[];
+  };
+  url: string;
+};
+
+const postModules = import.meta.glob<BlogPost>('./*.md', { eager: true });
+const posts = Object.values(postModules)
+  .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+---
+<BaseLayout title="Blog // charlexdew" description="Technical notes, experiments, and personal logs from charlexdew.">
+  <section class="blog-hero">
+    <p class="section-label">/var/log/charlexdew</p>
+    <h1>Blog</h1>
+    <p>Notes from the lab: code, Linux, AI, automation, systems, and anything that makes the terminal glow.</p>
+  </section>
+
+  <section class="posts">
+    {posts.map((post) => (
+      <article class="panel post-card">
+        <div>
+          <p class="date">{new Date(post.frontmatter.pubDate).toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <h2><a href={post.url}>{post.frontmatter.title}</a></h2>
+          <p>{post.frontmatter.description}</p>
+        </div>
+        <div class="tags">
+          {(post.frontmatter.tags ?? []).map((tag: string) => <span class="pill">#{tag}</span>)}
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-hero { padding: 4rem 0 2rem; }
+  h1 { font-size: clamp(3.4rem, 10vw, 7rem); margin: 0; letter-spacing: -0.08em; }
+  .blog-hero p:not(.section-label) { color: var(--muted); max-width: 70ch; line-height: 1.7; }
+  .posts { display: grid; gap: 1rem; }
+  .post-card { padding: 1.3rem; display: grid; gap: 1rem; }
+  .date { color: var(--green); margin: 0 0 0.45rem; font-size: 0.9rem; }
+  h2 { margin: 0 0 0.6rem; }
+  .post-card p:not(.date) { color: var(--muted); line-height: 1.7; }
+  .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+</style>
