@@ -23,4 +23,4 @@ Push to `main`. GitHub Actions builds the site and deploys it to GitHub Pages.
 
 Expected URL:
 
-https://charlexdew.github.io/charlexdew/
+https://charlexdew.github.io/
