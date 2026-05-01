@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import WeddingLayout from '../layouts/WeddingLayout.astro';
 
 const packages = [
   {
@@ -10,7 +10,7 @@ const packages = [
       'Cobertura de ceremonia en fotografía y video — 2 horas',
       'Cobertura de recepción en fotografía y video — 3 horas',
       '150 fotos editadas y digitales',
-      '1 video highlights de 3 minutos',
+      '1 video resumen de 3 minutos',
     ],
   },
   {
@@ -36,7 +36,7 @@ const packages = [
       '8 horas de cobertura de todo el evento: preparación, ceremonia y recepción',
       'Tomas de drone',
       '350 fotos editadas y digitales',
-      '1 a 2 videos highlights — 3 minutos en total',
+      '1 a 2 videos resumen — 3 minutos en total',
       '1 video de 10 minutos',
     ],
   },
@@ -51,16 +51,16 @@ const coverage = [
   'Fotografía y video',
 ];
 ---
-<BaseLayout
+<WeddingLayout
   title="Fotografía de bodas por Sami & Abi"
   description="Servicios de fotografía y video para bodas religiosas, bodas civiles, recepción y celebraciones por Sami Veliz y Abigail Ramírez."
 >
   <section class="wedding-hero">
     <div class="hero-copy">
       <p class="eyebrow">Fotografía & video de boda</p>
-      <h1>Sami & Abi</h1>
+      <h1>Sami <span>&</span> Abi</h1>
       <p class="lede">
-        Cobertura cálida, elegante y natural para contar la historia completa de tu boda:
+        Cobertura luminosa, romántica y natural para contar la historia completa de tu boda:
         desde la ceremonia religiosa o civil hasta la recepción, los abrazos, la fiesta y los detalles que no se repiten.
       </p>
       <div class="hero-actions">
@@ -69,9 +69,14 @@ const coverage = [
       </div>
     </div>
     <aside class="hero-card" aria-label="Resumen de cobertura">
+      <div class="photo-frame">
+        <span class="ring one"></span>
+        <span class="ring two"></span>
+        <span class="bloom">✽</span>
+      </div>
       <span class="script">Wedding stories</span>
-      <h2>Fotografía que acompaña cada momento.</h2>
-      <p>Paquetes desde <strong>$300</strong> con entrega digital editada y videos highlights.</p>
+      <h2>Imágenes suaves para recordar un día único.</h2>
+      <p>Paquetes desde <strong>$300</strong> con entrega digital editada y videos resumen.</p>
       <div class="mini-grid">
         <span>Civil</span>
         <span>Religiosa</span>
@@ -92,7 +97,7 @@ const coverage = [
     </div>
   </section>
 
-  <section class="packages" aria-label="Paquetes de cobertura de boda">
+  <section id="paquetes" class="packages" aria-label="Paquetes de cobertura de boda">
     <div class="section-heading">
       <p class="eyebrow">Paquetes</p>
       <h2>Elige la cobertura que mejor se adapta a tu día.</h2>
@@ -115,7 +120,7 @@ const coverage = [
     </p>
   </section>
 
-  <section class="process panel-soft">
+  <section id="reserva" class="process panel-soft">
     <div>
       <p class="eyebrow">Reserva y entrega</p>
       <h2>Un proceso sencillo para asegurar tu fecha.</h2>
@@ -139,7 +144,7 @@ const coverage = [
     </div>
   </section>
 
-  <section class="contact-card">
+  <section id="contacto" class="contact-card">
     <p class="eyebrow">Agenda tu fecha</p>
     <h2>Hablemos de tu boda.</h2>
     <p>
@@ -152,29 +157,60 @@ const coverage = [
       <a class="cta" href="tel:+593979160057">0979160057</a>
     </div>
   </section>
-</BaseLayout>
+</WeddingLayout>
 
 <style>
   :global(body) {
+    --wedding-ink: #3f332c;
+    --wedding-muted: #74665d;
+    --wedding-ivory: #fffdf8;
+    --wedding-cream: #fbf7f0;
+    --wedding-blush: #efd9d1;
+    --wedding-blush-strong: #c88f82;
+    --wedding-sage: #87977d;
+    --wedding-gold: #b68a4a;
+    --wedding-line: rgba(90, 67, 52, 0.16);
+    color: var(--wedding-ink);
     background:
-      radial-gradient(circle at 20% 0%, rgba(255, 218, 185, 0.22), transparent 28rem),
-      radial-gradient(circle at 85% 12%, rgba(255, 182, 193, 0.18), transparent 26rem),
-      linear-gradient(180deg, #180f10 0%, #281717 50%, #120c0d 100%);
+      radial-gradient(circle at 12% 5%, rgba(239, 217, 209, 0.7), transparent 23rem),
+      radial-gradient(circle at 90% 12%, rgba(219, 225, 203, 0.75), transparent 25rem),
+      linear-gradient(180deg, #fffdf8 0%, #fbf7f0 42%, #f7eee6 100%);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
-  :global(.scanline), :global(body::before) { opacity: 0.08; }
+  :global(body)::before {
+    opacity: 0.22;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(182, 138, 74, 0.18) 1px, transparent 0);
+    background-size: 30px 30px;
+    mask-image: linear-gradient(to bottom, black, transparent 72%);
+  }
 
   .wedding-hero {
     display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.72fr);
-    gap: clamp(1.5rem, 4vw, 3rem);
+    grid-template-columns: minmax(0, 1.02fr) minmax(310px, 0.78fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
     align-items: center;
-    padding: clamp(4rem, 9vw, 7rem) 0 3rem;
+    padding: clamp(4.5rem, 10vw, 8rem) 0 3.5rem;
+    position: relative;
   }
+
+  .wedding-hero::before,
+  .wedding-hero::after {
+    content: '❦';
+    position: absolute;
+    color: rgba(200, 143, 130, 0.22);
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .wedding-hero::before { top: 2.5rem; right: 47%; transform: rotate(-18deg); }
+  .wedding-hero::after { bottom: -1rem; left: 4%; transform: rotate(15deg); }
 
   .eyebrow {
     margin: 0 0 0.85rem;
-    color: #ffd7b5;
+    color: var(--wedding-sage);
     text-transform: uppercase;
     letter-spacing: 0.22em;
     font-size: 0.76rem;
@@ -186,19 +222,28 @@ const coverage = [
   h1 {
     margin: 0;
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(4.2rem, 15vw, 10.5rem);
+    font-size: clamp(4.4rem, 15vw, 10.8rem);
     line-height: 0.82;
     letter-spacing: -0.085em;
-    color: #fff4e8;
-    text-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
+    color: var(--wedding-ink);
+    text-shadow: 0 18px 50px rgba(90, 67, 52, 0.12);
+  }
+
+  h1 span {
+    display: inline-block;
+    color: var(--wedding-blush-strong);
+    font-family: 'Brush Script MT', 'Segoe Script', cursive;
+    font-size: 0.58em;
+    letter-spacing: -0.02em;
+    transform: translateY(-0.06em) rotate(-6deg);
   }
 
   .lede {
-    max-width: 68ch;
-    color: #f7dfcf;
-    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    max-width: 66ch;
+    color: var(--wedding-muted);
+    font-size: clamp(1.08rem, 2vw, 1.32rem);
     line-height: 1.85;
-    margin: 1.5rem 0 0;
+    margin: 1.4rem 0 0;
   }
 
   .hero-actions, .contact-actions {
@@ -212,35 +257,36 @@ const coverage = [
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 215, 181, 0.42);
+    border: 1px solid rgba(90, 67, 52, 0.16);
     border-radius: 999px;
-    padding: 0.9rem 1.15rem;
-    color: #fff4e8;
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
+    padding: 0.88rem 1.15rem;
+    color: var(--wedding-ink);
+    background: rgba(255, 253, 248, 0.7);
+    box-shadow: 0 14px 34px rgba(90, 67, 52, 0.08);
     font-weight: 800;
   }
 
   .cta.primary {
-    color: #2a1411;
-    background: linear-gradient(135deg, #ffe0bd, #fff7ed);
+    color: #fffdf8;
+    background: linear-gradient(135deg, var(--wedding-sage), #6f8166);
     border-color: transparent;
   }
 
   .hero-card, .panel-soft, .package-card, .contact-card {
-    border: 1px solid rgba(255, 215, 181, 0.26);
-    background: linear-gradient(145deg, rgba(255, 244, 232, 0.13), rgba(255, 255, 255, 0.045));
-    box-shadow: 0 32px 90px rgba(0, 0, 0, 0.28);
+    border: 1px solid var(--wedding-line);
+    background: rgba(255, 253, 248, 0.78);
+    box-shadow:
+      0 28px 80px rgba(90, 67, 52, 0.1),
+      0 2px 0 rgba(255, 255, 255, 0.75) inset;
     backdrop-filter: blur(18px);
   }
 
   .hero-card {
-    min-height: 460px;
-    border-radius: 34px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    min-height: 540px;
+    border-radius: 38px;
+    padding: 1.15rem;
+    display: grid;
+    grid-template-rows: 1fr auto;
     position: relative;
     overflow: hidden;
   }
@@ -248,46 +294,109 @@ const coverage = [
   .hero-card::before {
     content: '';
     position: absolute;
-    inset: 1rem;
-    border: 1px solid rgba(255, 244, 232, 0.3);
-    border-radius: 26px;
+    inset: 1.15rem;
+    border: 1px solid rgba(182, 138, 74, 0.22);
+    border-radius: 30px;
+    pointer-events: none;
+    z-index: 2;
   }
 
-  .hero-card::after {
+  .photo-frame {
+    min-height: 260px;
+    border-radius: 30px 30px 18px 18px;
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(145deg, rgba(255,255,255,0.3), transparent 45%),
+      radial-gradient(circle at 50% 20%, rgba(255, 253, 248, 0.95) 0 5rem, transparent 5.1rem),
+      linear-gradient(135deg, rgba(239, 217, 209, 0.9), rgba(219, 225, 203, 0.85));
+    border: 1px solid rgba(90, 67, 52, 0.1);
+  }
+
+  .photo-frame::before,
+  .photo-frame::after {
     content: '';
     position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(160deg, rgba(255,255,255,0.22), transparent 34%),
-      radial-gradient(circle at 50% 14%, rgba(255, 215, 181, 0.32), transparent 12rem),
-      linear-gradient(180deg, transparent, rgba(24, 15, 16, 0.92)),
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 110px);
-    opacity: 0.9;
+    border-radius: 999px 999px 0 0;
+    border: 1px solid rgba(90, 67, 52, 0.18);
+    background: rgba(255, 253, 248, 0.28);
   }
 
-  .hero-card > * { position: relative; z-index: 1; }
+  .photo-frame::before { width: 58%; height: 82%; left: 8%; bottom: -20%; transform: rotate(-8deg); }
+  .photo-frame::after { width: 54%; height: 76%; right: 7%; bottom: -18%; transform: rotate(7deg); }
+
+  .ring {
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+    border: 7px solid rgba(182, 138, 74, 0.74);
+    border-radius: 50%;
+    bottom: 2.2rem;
+    z-index: 1;
+    box-shadow: 0 18px 35px rgba(90, 67, 52, 0.12);
+  }
+
+  .ring.one { left: 42%; }
+  .ring.two { right: 31%; border-color: rgba(200, 143, 130, 0.66); }
+  .bloom { position: absolute; top: 2rem; right: 2.2rem; color: rgba(200, 143, 130, 0.68); font-size: 4rem; }
+
   .script {
+    margin: 1.4rem 1rem 0;
     font-family: 'Brush Script MT', 'Segoe Script', cursive;
-    color: #ffd7b5;
-    font-size: clamp(2rem, 5vw, 3.3rem);
+    color: var(--wedding-blush-strong);
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
     line-height: 1;
   }
-  .hero-card h2 { color: #fff4e8; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1; margin: 1rem 0; }
-  .hero-card p { color: #f7dfcf; line-height: 1.7; }
-  .mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; margin-top: 1rem; }
-  .mini-grid span { border: 1px solid rgba(255, 215, 181, 0.28); border-radius: 999px; padding: 0.65rem; text-align: center; color: #fff4e8; background: rgba(255,255,255,0.06); }
 
-  .intro, .process, .contact-card { border-radius: 30px; padding: clamp(1.35rem, 3vw, 2.4rem); margin: 2rem 0; }
+  .hero-card h2 {
+    color: var(--wedding-ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    line-height: 1;
+    margin: 0.4rem 1rem 0.8rem;
+    letter-spacing: -0.045em;
+  }
+
+  .hero-card p { color: var(--wedding-muted); line-height: 1.7; margin: 0 1rem; }
+  .hero-card strong { color: var(--wedding-gold); }
+
+  .mini-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.7rem;
+    margin: 1.2rem 1rem 1rem;
+  }
+
+  .mini-grid span {
+    border: 1px solid rgba(90, 67, 52, 0.12);
+    border-radius: 999px;
+    padding: 0.65rem;
+    text-align: center;
+    color: var(--wedding-ink);
+    background: #fffdf8;
+    font-weight: 700;
+  }
+
+  .intro, .process, .contact-card {
+    border-radius: 34px;
+    padding: clamp(1.5rem, 3.5vw, 2.6rem);
+    margin: 2rem 0;
+  }
+
   .intro h2, .process h2, .contact-card h2, .section-heading h2 {
     margin: 0;
     max-width: 850px;
     font-family: Georgia, 'Times New Roman', serif;
-    color: #fff4e8;
-    font-size: clamp(2rem, 4vw, 3.7rem);
+    color: var(--wedding-ink);
+    font-size: clamp(2.2rem, 4vw, 4rem);
     line-height: 1;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.055em;
   }
-  .intro p:not(.eyebrow), .contact-card p, .process p { color: #f1d4c2; line-height: 1.75; }
+
+  .intro p:not(.eyebrow), .contact-card p, .process p, .note {
+    color: var(--wedding-muted);
+    line-height: 1.75;
+  }
 
   .coverage-list {
     display: flex;
@@ -295,79 +404,121 @@ const coverage = [
     gap: 0.7rem;
     margin-top: 1.4rem;
   }
+
   .coverage-list span {
+    border: 1px solid rgba(135, 151, 125, 0.26);
     border-radius: 999px;
     padding: 0.65rem 0.85rem;
-    color: #2a1411;
-    background: #ffe0bd;
+    color: #52604b;
+    background: rgba(219, 225, 203, 0.6);
     font-weight: 900;
   }
 
-  .packages { padding: 3rem 0; }
-  .section-heading { margin-bottom: 1.4rem; }
+  .packages { padding: 3.4rem 0; }
+  .section-heading { margin-bottom: 1.6rem; }
+
   .package-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
   }
+
   .package-card {
     border-radius: 30px;
-    padding: 1.35rem;
+    padding: 1.4rem;
     position: relative;
     overflow: hidden;
   }
+
+  .package-card::after {
+    content: '✦';
+    position: absolute;
+    right: 1.2rem;
+    top: 1rem;
+    color: rgba(182, 138, 74, 0.22);
+    font-size: 3rem;
+  }
+
   .package-card.featured {
-    background: linear-gradient(145deg, rgba(255, 224, 189, 0.24), rgba(255, 255, 255, 0.07));
+    background: linear-gradient(180deg, #fffdf8, #f5ebe3);
+    border-color: rgba(200, 143, 130, 0.4);
     transform: translateY(-0.6rem);
   }
+
   .badge {
     display: inline-flex;
     border-radius: 999px;
     padding: 0.45rem 0.7rem;
-    color: #2a1411;
-    background: #ffe0bd;
+    color: #fffdf8;
+    background: var(--wedding-blush-strong);
     font-weight: 900;
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
-  .package-tone { color: #ffd7b5; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.75rem; font-weight: 900; }
+
+  .package-tone {
+    color: var(--wedding-sage);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.75rem;
+    font-weight: 900;
+  }
+
   .package-card h3 {
     margin: 0.2rem 0;
-    color: #fff4e8;
+    color: var(--wedding-ink);
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: 2.2rem;
+    font-size: 2.25rem;
+    letter-spacing: -0.04em;
   }
-  .price { margin: 0.3rem 0 1rem; color: #ffe0bd; font-size: 2.4rem; font-weight: 950; }
+
+  .price {
+    margin: 0.35rem 0 1rem;
+    color: var(--wedding-gold);
+    font-size: 2.55rem;
+    font-weight: 950;
+  }
+
   ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.75rem; }
-  li { color: #f4dccc; line-height: 1.55; padding-left: 1.45rem; position: relative; }
-  li::before { content: '✦'; position: absolute; left: 0; color: #ffd7b5; }
-  .note { color: #f1d4c2; line-height: 1.7; margin-top: 1rem; }
+  li { color: var(--wedding-muted); line-height: 1.55; padding-left: 1.45rem; position: relative; }
+  li::before { content: '✓'; position: absolute; left: 0; color: var(--wedding-sage); font-weight: 900; }
 
   .process {
     display: grid;
     grid-template-columns: 0.7fr 1.3fr;
     gap: 1.4rem;
   }
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
-  .steps article { border: 1px solid rgba(255, 215, 181, 0.22); border-radius: 22px; padding: 1rem; background: rgba(255,255,255,0.045); }
-  .steps span { color: #ffd7b5; font-weight: 950; }
-  .steps h3 { color: #fff4e8; margin: 0.4rem 0; }
 
-  .contact-card { text-align: center; margin-bottom: 0; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
+  .steps article { border: 1px solid rgba(90, 67, 52, 0.12); border-radius: 24px; padding: 1rem; background: #fffdf8; }
+  .steps span { color: var(--wedding-blush-strong); font-weight: 950; }
+  .steps h3 { color: var(--wedding-ink); margin: 0.4rem 0; }
+
+  .contact-card {
+    text-align: center;
+    margin-bottom: 0;
+    background:
+      linear-gradient(135deg, rgba(255,253,248,0.92), rgba(239,217,209,0.52)),
+      radial-gradient(circle at 15% 20%, rgba(219,225,203,0.55), transparent 16rem);
+  }
+
   .contact-card h2, .contact-card p { margin-left: auto; margin-right: auto; }
   .contact-card p { max-width: 68ch; }
   .contact-actions { justify-content: center; }
 
   @media (max-width: 900px) {
+    :global(.site-header) { border-radius: 24px; }
     .wedding-hero, .process { grid-template-columns: 1fr; }
     .package-grid, .steps { grid-template-columns: 1fr; }
     .package-card.featured { transform: none; }
-    .hero-card { min-height: 360px; }
+    .hero-card { min-height: auto; }
   }
 
   @media (max-width: 560px) {
-    h1 { font-size: clamp(3.5rem, 20vw, 5rem); }
-    .contact-actions .cta { width: 100%; }
+    h1 { font-size: clamp(3.7rem, 20vw, 5.4rem); }
+    .contact-actions .cta, .hero-actions .cta { width: 100%; }
+    .mini-grid { grid-template-columns: 1fr; }
+    .ring { width: 4rem; height: 4rem; }
   }
 </style>
