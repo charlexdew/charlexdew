@@ -15,6 +15,7 @@ const postModules = import.meta.glob<BlogPost>('./blog/*.md', { eager: true });
 const posts = Object.values(postModules)
   .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf())
   .slice(0, 3);
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 <BaseLayout title="charlexdew // personal node" description="The personal site and blog of charlexdew: code, systems, experiments, and nerdy notes.">
   <section class="hero">
@@ -25,7 +26,7 @@ const posts = Object.values(postModules)
         Personal node for code, systems, experiments, weird ideas, and notes from the edge of the terminal.
       </p>
       <div class="actions">
-        <a class="button primary" href={`${import.meta.env.BASE_URL}blog/`}>Read the logs</a>
+        <a class="button primary" href={`${base}blog/`}>Read the logs</a>
         <a class="button" href="https://github.com/charlexdew" target="_blank" rel="noreferrer">Inspect GitHub</a>
       </div>
     </div>

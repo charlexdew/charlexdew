@@ -6,10 +6,11 @@ const title = `${frontmatter.title} // charlexdew`;
 const description = frontmatter.description ?? 'A blog post from charlexdew.';
 const pubDate = frontmatter.pubDate ? new Date(frontmatter.pubDate) : undefined;
 const tags = frontmatter.tags ?? [];
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 <BaseLayout title={title} description={description}>
   <article class="panel article">
-    <a class="back" href={`${import.meta.env.BASE_URL}blog/`}>← back to blog</a>
+    <a class="back" href={`${base}blog/`}>← back to blog</a>
     <header>
       <p class="section-label">log entry</p>
       <h1>{frontmatter.title}</h1>
