@@ -1,0 +1,193 @@
+---
+import WeddingLayout from '../layouts/WeddingLayout.astro';
+
+const packages = [
+  {
+    name: 'Standard',
+    price: '$300',
+    tone: 'Ceremonia + recepción',
+    features: [
+      'Cobertura de ceremonia en fotografía y video — 2 horas',
+      'Cobertura de recepción en fotografía y video — 3 horas',
+      '150 fotos editadas y digitales',
+      '1 video resumen de 3 minutos',
+    ],
+  },
+  {
+    name: 'Premium',
+    price: '$400',
+    tone: 'Pre-boda + 6 horas',
+    featured: true,
+    features: [
+      'Sesión pre-boda al aire libre de 60 minutos*',
+      'Incluye 10 fotos de la sesión pre-boda',
+      '6 horas de cobertura en fotografía y video para ceremonia y recepción',
+      '250 fotos editadas y digitales',
+      '1 video de 5 minutos',
+    ],
+  },
+  {
+    name: 'Gold',
+    price: '$600',
+    tone: 'Cobertura completa',
+    features: [
+      'Sesión pre-boda al aire libre de 90 minutos*',
+      'Incluye 20 fotos de la sesión pre-boda',
+      '8 horas de cobertura de todo el evento: preparación, ceremonia y recepción',
+      'Tomas de drone',
+      '350 fotos editadas y digitales',
+      '1 a 2 videos resumen — 3 minutos en total',
+      '1 video de 10 minutos',
+    ],
+  },
+];
+
+const coverage = [
+  'Ceremonias religiosas',
+  'Bodas civiles',
+  'Recepción y celebración',
+  'Preparación de los novios',
+  'Sesiones pre-boda',
+  'Fotografía y video',
+];
+---
+<WeddingLayout
+  title="Fotografía de bodas clásica por Sami & Abi"
+  description="Versión clásica de los servicios de fotografía y video para bodas religiosas, bodas civiles, recepción y celebraciones por Sami Veliz y Abigail Ramírez."
+>
+  <section class="classic-hero">
+    <p class="kicker">Fotografía & video de boda</p>
+    <div class="monogram" aria-hidden="true">S · A</div>
+    <h1>Sami <span>&</span> Abi</h1>
+    <p class="lede">
+      Una propuesta clásica y atemporal para documentar ceremonias religiosas, bodas civiles,
+      recepción y los detalles familiares que convierten el día en memoria.
+    </p>
+    <div class="hero-actions">
+      <a class="button primary" href="mailto:abigailrfotografia@hotmail.com?subject=Consulta%20cobertura%20de%20boda%20Sami%20%26%20Abi">Consultar disponibilidad</a>
+      <a class="button" href="tel:+593979160057">Llamar 0979160057</a>
+    </div>
+  </section>
+
+  <section class="classic-panel intro">
+    <p class="kicker">Cobertura completa</p>
+    <h2>Un registro formal, elegante y sobrio de cada momento importante.</h2>
+    <p>
+      Sami Veliz y Abigail Ramírez cubren fotografía y video con atención a la ceremonia, la familia,
+      los votos, la entrada, el brindis, el baile y los instantes espontáneos de la celebración.
+    </p>
+    <div class="coverage-list" aria-label="Tipos de cobertura">
+      {coverage.map((item) => <span>{item}</span>)}
+    </div>
+  </section>
+
+  <section id="paquetes" class="packages" aria-label="Paquetes de cobertura de boda">
+    <div class="section-heading">
+      <p class="kicker">Paquetes</p>
+      <h2>Tarifas de cobertura</h2>
+    </div>
+    <div class="package-grid">
+      {packages.map((item) => (
+        <article class:list={['package-card', { featured: item.featured }]}>
+          {item.featured && <span class="badge">Más solicitado</span>}
+          <p class="package-tone">{item.tone}</p>
+          <h3>{item.name}</h3>
+          <p class="price">{item.price}</p>
+          <ul>
+            {item.features.map((feature) => <li>{feature}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+    <p class="note">
+      *La sesión pre-boda debe realizarse el mismo día del evento. Si se agenda para una fecha diferente, se aplicará un cargo adicional.
+    </p>
+  </section>
+
+  <section id="reserva" class="classic-panel process">
+    <div>
+      <p class="kicker">Reserva y entrega</p>
+      <h2>Condiciones claras para asegurar la fecha.</h2>
+    </div>
+    <div class="steps">
+      <article><span>01</span><h3>Reserva</h3><p>Cualquiera de los paquetes se reserva con el 50% de anticipo.</p></article>
+      <article><span>02</span><h3>Evento</h3><p>El 50% restante se cancela el día del evento o antes de la entrega final del material.</p></article>
+      <article><span>03</span><h3>Entrega</h3><p>El material final se entrega de 3 a 4 semanas después de la boda.</p></article>
+    </div>
+  </section>
+
+  <section id="contacto" class="contact-card">
+    <p class="kicker">Agenda tu fecha</p>
+    <h2>Hablemos de tu boda.</h2>
+    <p>Confirma disponibilidad, tipo de ceremonia, horario, lugar y el paquete que más te interesa.</p>
+    <div class="contact-actions">
+      <a class="button primary" href="mailto:abigailrfotografia@hotmail.com?subject=Consulta%20cobertura%20de%20boda%20Sami%20%26%20Abi">abigailrfotografia@hotmail.com</a>
+      <a class="button" href="mailto:samantaveliz92@gmail.com?subject=Consulta%20cobertura%20de%20boda%20Sami%20%26%20Abi">samantaveliz92@gmail.com</a>
+      <a class="button" href="tel:+593987896284">0987896284</a>
+      <a class="button" href="tel:+593979160057">0979160057</a>
+    </div>
+  </section>
+</WeddingLayout>
+
+<style>
+  :global(body) {
+    --classic-ink: #201812;
+    --classic-muted: #6e6259;
+    --classic-paper: #f6f0e6;
+    --classic-ivory: #fffaf0;
+    --classic-gold: #a47a3f;
+    --classic-line: rgba(64, 43, 24, 0.2);
+    color: var(--classic-ink);
+    background:
+      linear-gradient(90deg, rgba(164,122,63,0.05) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(164,122,63,0.04) 1px, transparent 1px),
+      radial-gradient(circle at 50% -10%, rgba(255,250,240,0.95), transparent 32rem),
+      #f1e7d8;
+    background-size: 44px 44px, 44px 44px, auto, auto;
+    font-family: 'Times New Roman', Georgia, serif;
+  }
+
+  :global(body)::before { opacity: 0.16; background-image: radial-gradient(circle at 1px 1px, #6b4b2a 0.7px, transparent 0); background-size: 22px 22px; }
+  .classic-hero { min-height: 74vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: clamp(4rem, 9vw, 7rem) clamp(1.2rem, 4vw, 3rem) clamp(4rem, 8vw, 6rem); position: relative; }
+  .classic-hero::before, .classic-hero::after { content: ''; position: absolute; inset: clamp(1rem, 3vw, 2rem); border: 1px solid var(--classic-line); pointer-events: none; }
+  .classic-hero::after { inset: clamp(1.6rem, 4vw, 3rem); border-color: rgba(164,122,63,0.36); }
+  .kicker { margin: 0 0 1rem; text-transform: uppercase; letter-spacing: 0.28em; color: var(--classic-gold); font: 700 0.76rem/1.4 Inter, ui-sans-serif, system-ui, sans-serif; }
+  .monogram { width: 7rem; height: 7rem; border: 1px solid rgba(164,122,63,0.45); border-radius: 50%; display: grid; place-items: center; margin: 0 auto 1.3rem; color: var(--classic-gold); font-size: 1rem; letter-spacing: 0.2em; }
+  h1, h2, h3, p { text-wrap: pretty; }
+  h1 { margin: 0; font-size: clamp(4.5rem, 13vw, 10rem); line-height: 0.86; letter-spacing: -0.07em; font-weight: 400; }
+  h1 span { display: inline-block; color: var(--classic-gold); font-style: italic; font-size: 0.62em; transform: translateY(-0.04em); }
+  .lede { max-width: 760px; margin: 1.4rem auto 0; color: var(--classic-muted); font: 1.18rem/1.85 Inter, ui-sans-serif, system-ui, sans-serif; }
+  .hero-actions, .contact-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 1.8rem; }
+  .button { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--classic-line); padding: 0.88rem 1.18rem; color: var(--classic-ink); background: rgba(255,250,240,0.68); font: 800 0.9rem/1 Inter, ui-sans-serif, system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.08em; }
+  .button.primary { color: var(--classic-ivory); background: #251b14; border-color: #251b14; }
+  .classic-panel, .package-card, .contact-card { border: 1px solid var(--classic-line); background: rgba(255,250,240,0.74); box-shadow: 0 24px 70px rgba(49, 35, 22, 0.08); }
+  .classic-panel, .contact-card { padding: clamp(1.6rem, 4vw, 3rem); margin: 2rem 0; }
+  .intro { text-align: center; }
+  .intro h2, .process h2, .contact-card h2, .section-heading h2 { margin: 0 auto; max-width: 900px; font-size: clamp(2.3rem, 5vw, 4.8rem); line-height: 0.98; font-weight: 400; letter-spacing: -0.045em; }
+  .intro p:not(.kicker), .process p, .contact-card p, .note { color: var(--classic-muted); font: 1rem/1.75 Inter, ui-sans-serif, system-ui, sans-serif; }
+  .intro p:not(.kicker), .contact-card p { max-width: 760px; margin-left: auto; margin-right: auto; }
+  .coverage-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; margin-top: 1.5rem; }
+  .coverage-list span { border: 1px solid rgba(164,122,63,0.34); padding: 0.62rem 0.82rem; background: rgba(246,240,230,0.68); font: 800 0.84rem/1 Inter, ui-sans-serif, system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.08em; }
+  .packages { padding: 3.4rem 0; }
+  .section-heading { text-align: center; margin-bottom: 1.8rem; }
+  .package-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .package-card { position: relative; padding: 1.5rem; min-height: 100%; }
+  .package-card::before { content: ''; position: absolute; inset: 0.65rem; border: 1px solid rgba(164,122,63,0.26); pointer-events: none; }
+  .package-card.featured { background: rgba(255,247,230,0.9); transform: translateY(-0.55rem); }
+  .badge { display: inline-flex; padding: 0.42rem 0.65rem; background: var(--classic-gold); color: var(--classic-ivory); font: 900 0.72rem/1 Inter, ui-sans-serif, system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.08em; }
+  .package-tone { color: var(--classic-gold); text-transform: uppercase; letter-spacing: 0.14em; font: 800 0.72rem/1.4 Inter, ui-sans-serif, system-ui, sans-serif; }
+  .package-card h3 { margin: 0.2rem 0; font-size: 2.8rem; font-style: italic; font-weight: 400; }
+  .price { margin: 0.3rem 0 1.1rem; color: var(--classic-gold); font-size: 2.8rem; }
+  ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.74rem; }
+  li { color: var(--classic-muted); line-height: 1.58; padding-left: 1.2rem; position: relative; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+  li::before { content: '—'; position: absolute; left: 0; color: var(--classic-gold); }
+  .note { text-align: center; margin-top: 1.4rem; }
+  .process { display: grid; grid-template-columns: 0.75fr 1.25fr; gap: 1.4rem; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
+  .steps article { border-left: 1px solid rgba(164,122,63,0.34); padding-left: 1rem; }
+  .steps span { color: var(--classic-gold); font-weight: 900; }
+  .steps h3 { margin: 0.4rem 0; font-size: 1.5rem; }
+  .contact-card { text-align: center; margin-bottom: 0; }
+  @media (max-width: 900px) { .classic-hero { min-height: auto; } .package-grid, .process, .steps { grid-template-columns: 1fr; } .package-card.featured { transform: none; } }
+  @media (max-width: 560px) { .hero-actions .button, .contact-actions .button { width: 100%; } h1 { font-size: clamp(3.8rem, 20vw, 5.4rem); } }
+</style>
