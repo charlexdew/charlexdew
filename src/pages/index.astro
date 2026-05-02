@@ -1,175 +1,52 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-type BlogPost = {
-  frontmatter: {
-    title: string;
-    description: string;
-    pubDate: string | Date;
-    tags?: string[];
-  };
-  url: string;
-};
-
-const postModules = import.meta.glob<BlogPost>('./blog/*.md', { eager: true });
-const posts = Object.values(postModules)
-  .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf())
-  .slice(0, 3);
-const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
-<BaseLayout title="charlexdew // personal node" description="The personal site and blog of charlexdew: code, systems, experiments, and nerdy notes.">
-  <section class="hero">
-    <div class="hero-copy">
-      <p class="section-label">[ boot sequence complete ]</p>
-      <h1 class="glitch" data-text="charlexdew">charlexdew</h1>
-      <p class="subtitle">
-        Personal node for code, systems, experiments, weird ideas, and notes from the edge of the terminal.
-      </p>
-      <div class="actions">
-        <a class="button primary" href={`${base}blog/`}>Read the logs</a>
-        <a class="button" href="https://www.instagram.com/charlexdew" target="_blank" rel="noopener noreferrer">Contact me on Instagram</a>
-      </div>
-    </div>
-    <aside class="terminal panel" aria-label="terminal profile card">
-      <div class="terminal-bar"><span></span><span></span><span></span></div>
-      <pre><code>$ whoami
-charlexdew
 
-$ cat ./interests.txt
-linux • ai • automation
-web • systems • experiments
-
-$ uptime
-online since curiosity
-
-$ sudo make future
-[ok] compiling ideas...</code></pre>
-    </aside>
-  </section>
-
-  <section class="grid-blocks" aria-label="site sections">
-    <article class="panel card">
-      <p class="section-label">01 / build</p>
-      <h2>Projects</h2>
-      <p>Small tools, prototypes, repos, automations, and experiments worth shipping into the public timeline.</p>
-    </article>
-    <article class="panel card">
-      <p class="section-label">02 / think</p>
-      <h2>Blog</h2>
-      <p>Technical notes, field reports, personal essays, and breadcrumbs for future debugging sessions.</p>
-    </article>
-    <article class="panel card">
-      <p class="section-label">03 / learn</p>
-      <h2>Lab notes</h2>
-      <p>A place for incomplete thoughts, half-built machines, and the kind of nerdy trails that become useful later.</p>
-    </article>
-  </section>
-
-  <section class="latest panel">
-    <div>
-      <p class="section-label">latest packets</p>
-      <h2>From the blog</h2>
-    </div>
-    <div class="post-list">
-      {posts.map((post) => (
-        <a class="post-link" href={post.url}>
-          <span>{post.frontmatter.title}</span>
-          <small>{new Date(post.frontmatter.pubDate).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })}</small>
-        </a>
-      ))}
-    </div>
-  </section>
+<BaseLayout title="charlexdew" description="charlexdew">
+  <main class="terminal" aria-label="terminal landing page">
+    <p class="prompt"><span aria-hidden="true">$</span> charlexdew</p>
+    <h1>I'm green</h1>
+    <span class="cursor" aria-hidden="true"></span>
+  </main>
 </BaseLayout>
 
 <style>
-  .hero {
+  .terminal {
+    min-height: 100svh;
     display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.72fr);
-    align-items: center;
-    gap: 2rem;
-    padding: 5.2rem 0 3rem;
+    place-content: center;
+    justify-items: start;
+    gap: 0.65rem;
+    padding: 2rem;
+    text-shadow: 0 0 10px rgba(0, 255, 102, 0.65), 0 0 28px rgba(0, 255, 102, 0.24);
+  }
+
+  .prompt,
+  h1 {
+    margin: 0;
+  }
+
+  .prompt {
+    color: rgba(0, 255, 102, 0.78);
+    font-size: clamp(0.9rem, 2vw, 1.15rem);
   }
 
   h1 {
-    font-size: clamp(3.7rem, 10vw, 7.8rem);
-    line-height: 0.9;
-    letter-spacing: -0.075em;
-    margin: 0;
-    max-width: 100%;
+    font-size: clamp(2.2rem, 8vw, 7rem);
+    font-weight: 500;
+    letter-spacing: -0.06em;
+    line-height: 0.95;
   }
 
-  .subtitle {
-    color: var(--muted);
-    font-size: clamp(1.05rem, 2vw, 1.35rem);
-    line-height: 1.7;
-    max-width: 68ch;
+  .cursor {
+    width: clamp(0.75rem, 2vw, 1.3rem);
+    height: clamp(1.3rem, 5vw, 4.6rem);
+    background: #00ff66;
+    box-shadow: 0 0 18px rgba(0, 255, 102, 0.75);
+    animation: blink 1s steps(1) infinite;
   }
 
-  .actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.8rem; }
-
-  .button {
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 0.85rem 1rem;
-    color: var(--text);
-    background: rgba(255, 255, 255, 0.04);
-  }
-
-  .button.primary {
-    color: #001b11;
-    background: var(--green);
-    box-shadow: 0 0 28px rgba(0, 255, 156, 0.35);
-    font-weight: 900;
-  }
-
-  .terminal { overflow: hidden; }
-  .terminal-bar {
-    display: flex;
-    gap: 0.45rem;
-    padding: 1rem;
-    border-bottom: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.035);
-  }
-  .terminal-bar span { width: 0.75rem; height: 0.75rem; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px currentColor; }
-  .terminal-bar span:nth-child(2) { background: var(--yellow); }
-  .terminal-bar span:nth-child(3) { background: var(--pink); }
-  pre { margin: 0; padding: 1.25rem; overflow: auto; }
-  pre code { border: 0; background: transparent; border-radius: 0; padding: 0; color: var(--text); line-height: 1.75; }
-
-  .grid-blocks {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin: 2rem 0;
-  }
-
-  .card { padding: 1.3rem; }
-  .card h2, .latest h2 { margin: 0 0 0.75rem; font-size: 1.35rem; }
-  .card p:not(.section-label) { color: var(--muted); line-height: 1.7; }
-
-  .latest {
-    display: grid;
-    grid-template-columns: 0.35fr 1fr;
-    gap: 2rem;
-    padding: 1.4rem;
-    margin-top: 1rem;
-  }
-
-  .post-list { display: grid; gap: 0.75rem; }
-  .post-link {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 1rem;
-    background: rgba(0, 255, 156, 0.045);
-    color: var(--text);
-  }
-  .post-link small { color: var(--muted); white-space: nowrap; }
-
-  @media (max-width: 860px) {
-    .hero, .latest { grid-template-columns: 1fr; }
-    .grid-blocks { grid-template-columns: 1fr; }
+  @keyframes blink {
+    50% { opacity: 0; }
   }
 </style>
